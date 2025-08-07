@@ -4,27 +4,6 @@ import { useEffect, useState } from "react";
 import ParticleBackground from "@/components/ParticleBackground";
 
 export default function Home() {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    fetch("https://api.github.com/users/The777Bot/repos?sort=updated")
-      .then((res) => res.json())
-      .then((data) => {
-        const featured = data.filter((repo) =>
-          [
-            "Super_Stickmen",
-            "OBE-System",
-            "Nexium_UbaidAhmed_GrandProject",
-            "FitForge",
-            "blog-summarizerai",
-            "Fitex",
-            "Nexium_UbaidAhmed_Assign2",
-          ].includes(repo.name)
-        );
-        setProjects(featured);
-      });
-  }, []);
-
   const deployedLinks = {
     FitForge: "https://fit-forge-lake.vercel.app/",
     Nexium_UbaidAhmed_GrandProject:
@@ -39,12 +18,23 @@ export default function Home() {
     "OBE-System": "OBE System",
     "blog-summarizerai": "AI Blog Summarizer",
     Fitex: "Fitex (Fitness App)",
-    Nexium_UbaidAhmed_Assign2: "Nexium Assignment 2",
+    
   };
+
+  const githubLinks = {
+    Fitex: "https://github.com/Hassaanafzal/FITex",
+    Super_Stickmen: "https://github.com/The777Bot/Super_Stickmen",
+    "OBE-System": "https://github.com/The777Bot/OBE-System",
+    Nexium_UbaidAhmed_GrandProject: "https://github.com/The777Bot/Nexium_UbaidAhmed_GrandProject",
+    FitForge: "https://github.com/The777Bot/FitForge",
+    "blog-summarizerai": "https://github.com/The777Bot/blog-summarizerai",
+   
+  };
+
+  const featuredKeys = Object.keys(projectDisplayName);
 
   return (
     <div className="min-h-screen relative text-white overflow-hidden bg-transparent">
-      {/* DYNAMIC PARTICLE BACKGROUND */}
       <ParticleBackground />
 
       {/* HEADER */}
@@ -62,16 +52,22 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 mt-3 text-sm text-white">
-          {["JavaScript", "React", "Next.js", "Node.js", "Tailwind CSS", "MongoDB", "n8n"].map(
-            (tech) => (
-              <span
-                key={tech}
-                className="bg-white/10 border border-white/20 px-3 py-1 rounded-full hover:bg-white/20 transition"
-              >
-                {tech}
-              </span>
-            )
-          )}
+          {[
+            "JavaScript",
+            "React",
+            "Next.js",
+            "Node.js",
+            "Tailwind CSS",
+            "MongoDB",
+            "n8n",
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="bg-white/10 border border-white/20 px-3 py-1 rounded-full hover:bg-white/20 transition"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </header>
 
@@ -80,31 +76,30 @@ export default function Home() {
         <section>
           <h2 className="text-3xl font-bold mb-8">🚀 Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.length === 0 ? (
-              <p className="text-gray-400">Loading latest projects...</p>
-            ) : (
-              projects.map((p) => {
-                const deployedUrl = deployedLinks[p.name];
-                const name = projectDisplayName[p.name] || p.name.replace(/_/g, " ");
-                return (
-                  <a
-                    key={p.id}
-                    href={deployedUrl || p.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg hover:scale-[1.02] hover:border-pink-400 hover:bg-white/20 transition-all duration-300"
-                  >
-                    <h3 className="text-2xl font-semibold text-white">{name}</h3>
-                    <p className="text-gray-300 mt-2">
-                      {p.description || "No description available"}
-                    </p>
-                    <p className="text-pink-400 mt-1 text-sm">
-                      {deployedUrl ? "🌐 Live" : "📦 GitHub"}
-                    </p>
-                  </a>
-                );
-              })
-            )}
+            {featuredKeys.map((key) => {
+              const name = projectDisplayName[key] || key;
+              const deployedUrl = deployedLinks[key];
+              const githubUrl = githubLinks[key];
+
+              return (
+                <a
+                  key={key}
+                  href={deployedUrl || githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg hover:scale-[1.02] hover:border-pink-400 hover:bg-white/20 transition-all duration-300"
+                >
+                  <h3 className="text-2xl font-semibold text-white">{name}</h3>
+                  <p className="text-gray-300 mt-2">
+                    {githubUrl?.split("/").pop()?.replace(/[-_]/g, " ") ||
+                      "No description"}
+                  </p>
+                  <p className="text-pink-400 mt-1 text-sm">
+                    {deployedUrl ? "🌐 Live" : "📦 GitHub"}
+                  </p>
+                </a>
+              );
+            })}
           </div>
         </section>
 
@@ -112,7 +107,11 @@ export default function Home() {
         <section>
           <h2 className="text-3xl font-bold mb-4">👋 About Me</h2>
           <p className="text-gray-300 leading-relaxed">
-            I’m Ubaid Ahmed, a Full‑Stack Web Developer & Workflow Automation Engineer passionate about building AI-enhanced apps. Skilled in React, Next.js, Tailwind, Firebase, Node.js, n8n, and UI/UX optimization — with hands-on experience deploying startup-grade solutions, anime-themed interfaces, and interactive web projects.
+            I’m Ubaid Ahmed, a Full‑Stack Web Developer & Workflow Automation
+            Engineer passionate about building AI-enhanced apps. Skilled in
+            React, Next.js, Tailwind, Firebase, Node.js, n8n, and UI/UX
+            optimization — with hands-on experience deploying startup-grade
+            solutions, anime-themed interfaces, and interactive web projects.
           </p>
         </section>
 
@@ -120,16 +119,31 @@ export default function Home() {
         <section>
           <h2 className="text-3xl font-bold mb-4">🛠 Skills & Tech</h2>
           <div className="flex flex-wrap gap-3">
-            {["Web Development", "Front-End Development", "UI/UX Optimization", "AI-Enhanced Web Apps", "n8n Automation", "Python", "JavaScript/TypeScript", "HTML/CSS", "MongoDB", "Flask", "FastAPI", "Flutter", "TensorFlow", "React", "AWS/GCP", "Advanced MS Word"].map(
-              (skill) => (
-                <span
-                  key={skill}
-                  className="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-md text-sm hover:scale-105 transition-transform"
-                >
-                  {skill}
-                </span>
-              )
-            )}
+            {[
+              "Web Development",
+              "Front-End Development",
+              "UI/UX Optimization",
+              "AI-Enhanced Web Apps",
+              "n8n Automation",
+              "Python",
+              "JavaScript/TypeScript",
+              "HTML/CSS",
+              "MongoDB",
+              "Flask",
+              "FastAPI",
+              "Flutter",
+              "TensorFlow",
+              "React",
+              "C/C++",
+              "Advanced MS Word",
+            ].map((skill) => (
+              <span
+                key={skill}
+                className="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-md text-sm hover:scale-105 transition-transform"
+              >
+                {skill}
+              </span>
+            ))}
           </div>
         </section>
 
@@ -137,14 +151,14 @@ export default function Home() {
         <section className="text-center">
           <h2 className="text-3xl font-bold mb-4">📬 Contact</h2>
           <p className="text-gray-300">
-            Reach out via {" "}
+            Reach out via{" "}
             <a
               href="mailto:ubadahme@gmail.com"
               className="text-pink-400 hover:underline"
             >
               ubadahme@gmail.com
             </a>{" "}
-            or connect on {" "}
+            or connect on{" "}
             <a
               href="https://linkedin.com/in/ubaid-ahmed-230098328/"
               className="text-pink-400 hover:underline"
@@ -158,7 +172,6 @@ export default function Home() {
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-20">
         © {new Date().getFullYear()} Ubaid Ahmed
       </footer>
