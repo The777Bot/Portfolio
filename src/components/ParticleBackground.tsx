@@ -3,9 +3,10 @@
 import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; // ⬅️ use slim instead of full
+import type { Engine } from "tsparticles-engine";
 
 const ParticleBackground = () => {
-  const particlesInit = useCallback(async (engine: any) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
 
