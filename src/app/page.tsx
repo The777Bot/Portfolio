@@ -4,32 +4,31 @@ import { useEffect, useState } from "react";
 import ParticleBackground from "@/components/ParticleBackground";
 
 export default function Home() {
-  const deployedLinks = {
+  const deployedLinks: Record<string, string> = {
     FitForge: "https://fit-forge-lake.vercel.app/",
     Nexium_UbaidAhmed_GrandProject:
       "https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/",
     "blog-summarizerai": "https://blog-summarizerai.vercel.app/",
   };
 
-  const projectDisplayName = {
+  const projectDisplayName: Record<string, string> = {
     FitForge: "FitForge",
     Nexium_UbaidAhmed_GrandProject: "MindMonitor (AI Mental Health Tracker)",
     Super_Stickmen: "Super Stickmen",
     "OBE-System": "OBE System",
     "blog-summarizerai": "AI Blog Summarizer",
     Fitex: "Fitex (Fitness App)",
-    
   };
 
-  const githubLinks = {
+  const githubLinks: Record<string, string> = {
     Fitex: "https://github.com/Hassaanafzal/FITex",
     Super_Stickmen: "https://github.com/The777Bot/Super_Stickmen",
     "OBE-System": "https://github.com/The777Bot/OBE-System",
     Nexium_UbaidAhmed_GrandProject: "https://github.com/The777Bot/Nexium_UbaidAhmed_GrandProject",
     FitForge: "https://github.com/The777Bot/FitForge",
     "blog-summarizerai": "https://github.com/The777Bot/blog-summarizerai",
-   
   };
+
 
   const featuredKeys = Object.keys(projectDisplayName);
 
