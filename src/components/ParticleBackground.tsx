@@ -5,6 +5,7 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
 import type { ISourceOptions } from "tsparticles-engine";
+import { OutMode } from "tsparticles-engine"; // ✅ important!
 
 const ParticleBackground = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -23,16 +24,22 @@ const ParticleBackground = () => {
     await loadSlim(engine);
   }, []);
 
-  const particleOptions = {
-  fullScreen: { enable: false },
-  background: {
-    color: { value: "#000000" },
+
+
+const particleOptions = {
+  fullScreen: {
+    enable: true,
   },
-  fpsLimit: 30,
+  background: {
+    color: {
+      value: "#0f0f0f",
+    },
+  },
+  fpsLimit: 60,
   interactivity: {
     events: {
       onHover: {
-        enable: !isMobile,
+        enable: true,
         mode: "repulse",
       },
       resize: true,
@@ -45,41 +52,45 @@ const ParticleBackground = () => {
     },
   },
   particles: {
-    number: {
-      value: 50,
-      density: {
-        enable: true,
-        area: 800,
-      },
-    },
     color: {
       value: "#ec4899",
     },
     links: {
-      enable: true,
-      distance: 200,
       color: "#3b82f6",
-      opacity: 1,
+      distance: 200,
+      enable: true,
+      opacity: 0.9,
       width: 1,
+    },
+    collisions: {
+      enable: true,
+    },
+    move: {
+      directions: "none",
+      enable: true,
+      outModes: {
+        default: "bounce" as OutMode, // ✅ Fix is here!
+      },
+      random: false,
+      speed: 1.5,
+      straight: false,
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 800,
+      },
+      value: 80,
+    },
+    opacity: {
+      value: 0.7,
     },
     shape: {
       type: "circle",
     },
-    opacity: {
-      value: 0.8,
-    },
     size: {
-      value: 5,
+      value: { min: 2, max: 6 }, // 🎯 Use this to control particle size
     },
-   move: {
-  enable: true,
-  speed: 2,
-  direction: "none" as const,
-  outModes: {
-    default: "bounce", // Correct format
-  },
-},
-
   },
   detectRetina: true,
 };
