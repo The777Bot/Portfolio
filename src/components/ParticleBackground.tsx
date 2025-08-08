@@ -71,12 +71,15 @@ const ParticleBackground = () => {
     size: {
       value: 5,
     },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none" as const,
-      outModes: "bounce",
-    },
+   move: {
+  enable: true,
+  speed: 2,
+  direction: "none" as const,
+  outModes: {
+    default: "bounce", // Correct format
+  },
+},
+
   },
   detectRetina: true,
 };
