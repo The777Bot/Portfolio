@@ -197,7 +197,7 @@ export default function Home() {
       </main>
 
       <footer className="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-20">
-        © {new Date().getFullYear()} Ubaid Ahmed
+        © {new Date().getFullYear()} Ubaid Ahmed (All Rights Reserved)
       </footer>
     </div>
   );
