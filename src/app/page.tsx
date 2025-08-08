@@ -28,6 +28,15 @@ export default function Home() {
     FitForge: "https://github.com/The777Bot/FitForge",
     "blog-summarizerai": "https://github.com/The777Bot/blog-summarizerai",
   };
+  
+  const projectTopics: Record<string, string[]> = {
+  FitForge: ["Next.js", "Tailwind", "Fitness", "Vercel", "Auth"],
+  Nexium_UbaidAhmed_GrandProject: ["AI", "Mental Health", "Next.js", "LangChain"],
+  "blog-summarizerai": ["AI", "OpenAI API", "Summarization", "Vercel"],
+  "OBE-System": ["Academic", "OBE", "MongoDB", "Node.js", "Dashboards"],
+  Super_Stickmen: ["Game", "JavaScript", "Canvas", "Physics"],
+  Fitex: ["Fitness", "Firebase", "React", "Tailwind"],
+};
 
 
   const featuredKeys = Object.keys(projectDisplayName);
@@ -89,13 +98,29 @@ export default function Home() {
                   className="block p-6 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg hover:scale-[1.02] hover:border-pink-400 hover:bg-white/20 transition-all duration-300"
                 >
                   <h3 className="text-2xl font-semibold text-white">{name}</h3>
-                  <p className="text-gray-300 mt-2">
-                    {githubUrl?.split("/").pop()?.replace(/[-_]/g, " ") ||
-                      "No description"}
-                  </p>
-                  <p className="text-pink-400 mt-1 text-sm">
-                    {deployedUrl ? "🌐 Live" : "📦 GitHub"}
-                  </p>
+                  
+                  {/* Description */}
+<p className="text-gray-300 mt-2">
+  {githubUrl?.split("/").pop()?.replace(/[-_]/g, " ") || "No description"}
+</p>
+
+{/* Tags */}
+<div className="flex flex-wrap gap-2 mt-3">
+  {(projectTopics[key] || []).map((topic) => (
+    <span
+      key={topic}
+      className="bg-white/20 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm hover:bg-pink-400/30 transition"
+    >
+      {topic}
+    </span>
+  ))}
+</div>
+
+{/* Link Badge */}
+<p className="text-pink-400 mt-3 text-sm">
+  {deployedUrl ? "🌐 Live" : "📦 GitHub"}
+</p>
+
                 </a>
               );
             })}
