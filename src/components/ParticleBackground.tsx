@@ -56,7 +56,7 @@ const ParticleBackground = () => {
       move: {
         enable: true,
         speed: isMobile ? 0.8 : 2, // slower on mobile
-        direction: "none",
+        direction: "none" as const,
         outModes: { default: "bounce" },
       },
       number: {
