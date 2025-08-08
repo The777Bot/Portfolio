@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
+import type { ISourceOptions } from "tsparticles-engine";
 
 const ParticleBackground = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -22,16 +23,16 @@ const ParticleBackground = () => {
     await loadSlim(engine);
   }, []);
 
-  const particleOptions = {
+  const particleOptions: ISourceOptions = {
     fullScreen: { enable: false },
     background: {
       color: { value: "#000000" },
     },
-    fpsLimit: 30, // reduce fps for mobile
+    fpsLimit: 30,
     interactivity: {
       events: {
         onHover: {
-          enable: !isMobile, // disable hover effects on mobile
+          enable: !isMobile,
           mode: "repulse",
         },
         resize: true,
@@ -43,36 +44,33 @@ const ParticleBackground = () => {
         },
       },
     },
-    const options: ISourceOptions = {
-  particles: {
-    number: {
-      value: 50,
-      density: {
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+          area: 800,
+        },
+      },
+      color: {
+        value: "#ec4899", // Tailwind's pink-500
+      },
+      shape: {
+        type: "circle",
+      },
+      opacity: {
+        value: 0.5,
+      },
+      size: {
+        value: 5,
+      },
+      move: {
         enable: true,
-        area: 800,
+        speed: 2,
+        direction: "none",
+        outModes: "bounce",
       },
     },
-    color: {
-      value: "#ec4899",
-    },
-    shape: {
-      type: "circle",
-    },
-    opacity: {
-      value: 0.5,
-    },
-    size: {
-      value: 5,
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none" as const,
-      outModes: "bounce", // ✅ Simple and clean
-    },
-  },
-};
-
     detectRetina: true,
   };
 
