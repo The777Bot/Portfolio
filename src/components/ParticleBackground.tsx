@@ -23,56 +23,64 @@ const ParticleBackground = () => {
     await loadSlim(engine);
   }, []);
 
-  const particleOptions: ISourceOptions = {
-    fullScreen: { enable: false },
-    background: {
-      color: { value: "#000000" },
+  const particleOptions = {
+  fullScreen: { enable: false },
+  background: {
+    color: { value: "#000000" },
+  },
+  fpsLimit: 30,
+  interactivity: {
+    events: {
+      onHover: {
+        enable: !isMobile,
+        mode: "repulse",
+      },
+      resize: true,
     },
-    fpsLimit: 30,
-    interactivity: {
-      events: {
-        onHover: {
-          enable: !isMobile,
-          mode: "repulse",
-        },
-        resize: true,
-      },
-      modes: {
-        repulse: {
-          distance: 100,
-          duration: 0.4,
-        },
+    modes: {
+      repulse: {
+        distance: 100,
+        duration: 0.4,
       },
     },
-    particles: {
-      number: {
-        value: 50,
-        density: {
-          enable: true,
-          area: 800,
-        },
-      },
-      color: {
-        value: "#ec4899", // Tailwind's pink-500
-      },
-      shape: {
-        type: "circle",
-      },
-      opacity: {
-        value: 0.5,
-      },
-      size: {
-        value: 5,
-      },
-      move: {
+  },
+  particles: {
+    number: {
+      value: 50,
+      density: {
         enable: true,
-        speed: 2,
-        direction: "none",
-        outModes: "bounce",
+        area: 800,
       },
     },
-    detectRetina: true,
-  };
+    color: {
+      value: "#ec4899",
+    },
+    links: {
+      enable: true,
+      distance: 200,
+      color: "#3b82f6",
+      opacity: 3,
+      width: 1,
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 3,
+    },
+    size: {
+      value: 5,
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none" as const,
+      outModes: "bounce",
+    },
+  },
+  detectRetina: true,
+};
+
 
   return (
     <Particles
