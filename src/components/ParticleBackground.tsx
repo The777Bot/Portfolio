@@ -43,35 +43,36 @@ const ParticleBackground = () => {
         },
       },
     },
-    particles: {
-      color: { value: "#ec4899" },
-      links: {
-        color: "#3b82f6",
-        distance: isMobile ? 100 : 200,
+    const options: ISourceOptions = {
+  particles: {
+    number: {
+      value: 50,
+      density: {
         enable: true,
-        opacity: 0.6,
-        width: 1,
-      },
-      collisions: { enable: false },
-      move: {
-        enable: true,
-        speed: isMobile ? 0.8 : 2, // slower on mobile
-        direction: "none" as const,
-        outModes: { default: "bounce" },
-      },
-      number: {
-        value: isMobile ? 30 : 100, // fewer particles on mobile
-        density: {
-          enable: true,
-          area: 700,
-        },
-      },
-      opacity: { value: 0.4 },
-      shape: { type: "circle" },
-      size: {
-        value: isMobile ? { min: 1, max: 3 } : { min: 1, max: 5 },
+        area: 800,
       },
     },
+    color: {
+      value: "#ec4899",
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 0.5,
+    },
+    size: {
+      value: 5,
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none" as const,
+      outModes: "bounce", // ✅ Simple and clean
+    },
+  },
+};
+
     detectRetina: true,
   };
 
