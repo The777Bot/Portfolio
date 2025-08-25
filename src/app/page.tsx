@@ -5,7 +5,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 
 export default function Home() {
   const deployedLinks: Record<string, string> = {
-    FitForge: "https://fit-forge-lake.vercel.app/",
+    FitForge: "https://fitforgepk.com/",
     Nexium_UbaidAhmed_GrandProject:
       "https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/",
     "blog-summarizerai": "https://blog-summarizerai.vercel.app/",
