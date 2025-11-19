@@ -9,6 +9,9 @@ export default function Home() {
     Nexium_UbaidAhmed_GrandProject:
       "https://nexium-ubaid-ahmed-grand-project-gpq51a8zp.vercel.app/",
     "blog-summarizerai": "https://blog-summarizerai.vercel.app/",
+    Fruit_Ninja_Clone: "https://play.unity.com/en/games/24638411-efad-4c8b-9f55-159afec2024d/fruit-ninja-clone",
+    Mini_Bomb_Squad: "https://play.unity.com/en/games/62b5b2ca-99e2-4423-8f3e-d60048748fec/mini-bomb-squad",
+    Force_Impulse: "https://play.unity.com/en/games/31fd18c4-b44b-4c4d-87df-7fad1c54b5d5/force-impulse",
   };
 
   const projectDisplayName: Record<string, string> = {
@@ -18,6 +21,9 @@ export default function Home() {
     "OBE-System": "OBE System",
     "blog-summarizerai": "AI Blog Summarizer",
     Fitex: "Fitex (Fitness App)",
+    Fruit_Ninja_Clone: "Fruit Ninja Clone (3D)",
+    Mini_Bomb_Squad: "Mini Bomb Squad (Replica)",
+    Force_Impulse: "Force‑Impulse (2D)",
   };
 
   const githubLinks: Record<string, string> = {
@@ -36,6 +42,9 @@ export default function Home() {
   "OBE-System": ["Academic", "OBE", "MongoDB", "Node.js", "Dashboards"],
   Super_Stickmen: ["Game", "JavaScript", "Canvas", "Physics"],
   Fitex: ["Fitness", "Firebase", "React", "Tailwind"],
+  Fruit_Ninja_Clone: ["Unity", "C#", "3D", "Physics", "Mobile"],
+  Mini_Bomb_Squad: ["Unity", "C#", "Arcade", "Physics", "Desktop"],
+  Force_Impulse: ["Unity", "C#", "2D", "Arcade", "Mobile"],
 };
 
 
@@ -56,11 +65,15 @@ export default function Home() {
           Ubaid Ahmed
         </h1>
         <p className="mt-1 text-lg text-gray-300">
-          AI Engineer • Full‑Stack Dev • n8n Wizard • Frontend Specialist
+          Unity Game Developer • AI Engineer • Full‑Stack Dev • n8n Wizard • Frontend Specialist
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 mt-3 text-sm text-white">
           {[
+            "Unity",
+            "C#",
+            "Game Dev",
+            "AR",
             "JavaScript",
             "React",
             "Next.js",
@@ -82,9 +95,59 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 space-y-20 relative z-10">
         {/* PROJECTS */}
         <section>
-          <h2 className="text-3xl font-bold mb-8">🚀 Featured Projects</h2>
+          <h2 className="text-3xl font-bold mb-2">🎮 Featured Game Projects</h2>
+          <p className="text-pink-300 text-sm mb-2">AI Engineer • Full‑Stack Dev • n8n Wizard • Frontend Specialist</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                key: "Fruit_Ninja_Clone",
+                name: "Fruit Ninja Clone (3D)",
+                url: deployedLinks.Fruit_Ninja_Clone,
+                tags: ["Unity", "C#", "3D", "Physics", "Mobile"],
+              },
+              {
+                key: "Mini_Bomb_Squad",
+                name: "Mini Bomb Squad (Replica)",
+                url: deployedLinks.Mini_Bomb_Squad,
+                tags: ["Unity", "C#", "Arcade", "Physics", "Desktop"],
+              },
+              {
+                key: "Force_Impulse",
+                name: "Force‑Impulse (2D)",
+                url: deployedLinks.Force_Impulse,
+                tags: ["Unity", "C#", "2D", "Arcade", "Mobile"],
+              },
+            ].map((g) => (
+              <a
+                key={g.key}
+                href={g.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-6 rounded-2xl bg-gradient-to-br from-purple-900/40 to-blue-900/30 backdrop-blur-lg border border-pink-400 shadow-lg hover:scale-[1.02] hover:border-pink-300 hover:from-purple-800/50 hover:to-blue-800/40 transition-all duration-300"
+              >
+                <h3 className="text-2xl font-semibold text-white">{g.name}</h3>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {g.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="bg-pink-400/20 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm hover:bg-pink-400/30 transition"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-pink-400 mt-3 text-sm">🌐 Unity Play</p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-8">🚀 Featured Web Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredKeys.map((key) => {
+            {featuredKeys
+              .filter((k) => !["Fruit_Ninja_Clone", "Mini_Bomb_Squad", "Force_Impulse"].includes(k))
+              .map((key) => {
               const name = projectDisplayName[key] || key;
               const deployedUrl = deployedLinks[key];
               const githubUrl = githubLinks[key];
@@ -144,6 +207,19 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">🛠 Skills & Tech</h2>
           <div className="flex flex-wrap gap-3">
             {[
+              "Unity 2D/3D",
+              "C#",
+              "AR Foundation",
+              "XR Interaction Toolkit",
+              "Vuforia",
+              "Shader Graph/URP",
+              "Physics & Collisions",
+              "Input System",
+              "Cinemachine",
+              "NavMesh",
+              "ScriptableObjects",
+              "Addressables",
+              "Mobile Optimization",
               "Web Development",
               "Front-End Development",
               "UI/UX Optimization",
