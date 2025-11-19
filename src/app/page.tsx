@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React from "react";
 import ParticleBackground from "@/components/ParticleBackground";
 
 export default function Home() {
