@@ -7,7 +7,9 @@ import type { Engine } from "tsparticles-engine";
 import type { ISourceOptions } from "tsparticles-engine";
 import { OutMode } from "tsparticles-engine"; // ✅ important!
 
-const ParticleBackground = () => {
+type ParticleBackgroundProps = { light: boolean };
+
+const ParticleBackground = ({ light }: ParticleBackgroundProps) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -26,13 +28,16 @@ const ParticleBackground = () => {
 
 
 
+const dotColor = light ? "#000000ff" : "#ec4899";
+const lineColor = light ? "#ffffffff" : "#006cfaff";
+
 const particleOptions = {
   fullScreen: {
     enable: true,
   },
   background: {
     color: {
-      value: "#0f0f0f",
+      value: "transparent",
     },
   },
   fpsLimit: 60,
@@ -53,10 +58,10 @@ const particleOptions = {
   },
   particles: {
     color: {
-      value: "#ec4899",
+      value: dotColor,
     },
     links: {
-      color: "#3b82f6",
+      color: lineColor,
       distance: 200,
       enable: true,
       opacity: 0.9,
